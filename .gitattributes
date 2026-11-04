@@ -1,0 +1,15 @@
+# Render builds on Linux - keep scripts/config in LF so bash can execute them.
+*.sh   text eol=lf
+*.yaml text eol=lf
+*.yml  text eol=lf
+*.dart text eol=lf
+*.js   text eol=lf
+*.md   text eol=lf
+
+# Flutter build output and tooling are ignored (see .gitignore).
+binary    -text
+*.png     binary
+*.jpg     binary
+*.jpeg    binary
+*.ttf     binary
+*.otf     binary

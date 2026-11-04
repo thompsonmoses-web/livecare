@@ -1,0 +1,18 @@
+# Render blueprint: hosts the LiveCare Flutter web app as a static site.
+# Repo -> Render builds with the pinned Flutter toolchain, patches out the
+# service worker, then serves build/web.
+services:
+  - type: web
+    name: livecare
+    runtime: static
+    plan: free
+    buildCommand: >-
+      git clone --depth 1 -b 3.47.6 https://github.com/flutter/flutter.git "$HOME/flutter" &&
+      export PATH="$HOME/flutter/bin:$PATH" &&
+      (flutter config --no-analytics || true) &&
+      flutter --version &&
+      flutter pub get &&
+      flutter build web &&
+      bash patch_web.sh
+    staticPublishPath: build/web
+    autoDeploy: true
